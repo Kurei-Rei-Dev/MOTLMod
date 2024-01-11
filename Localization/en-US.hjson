@@ -1,1 +1,15 @@
-
+Mods: {
+	MOTLMod: {
+		Items: {
+			MinotaursAxe: {
+				DisplayName: Minotaurs Axe
+				Tooltip:
+					'''
+					Allows you to dash very fast.
+					Dash speed scales off of maximum run speed.
+					Damage scales off of speed.
+					'''
+			}
+		}
+	}
+}
