@@ -8,6 +8,26 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\Gores\Placeholder.txt" />
+    <None Remove="Assets\Music\Placeholder.txt" />
+    <None Remove="Assets\Sfx\Placeholder.txt" />
+    <None Remove="Assets\Textures\Placeholder.txt" />
+    <None Remove="Common\Globals\Placeholder.txt" />
+    <None Remove="Common\Systems\Placeholder.txt" />
+    <None Remove="Common\UI\Placeholder.txt" />
+    <None Remove="Common\Utils\Placeholder.txt" />
+    <None Remove="Content\Classes\Placeholder.txt" />
+    <None Remove="Content\Items\Consumables\Placeholder.txt" />
+    <None Remove="Content\Items\Materials\Placeholder.txt" />
+    <None Remove="Content\Items\Weapons\Placeholder.txt" />
+    <None Remove="Content\NPCs\Bosses\Placeholder.txt" />
+    <None Remove="Content\NPCs\Critters\Placeholder.txt" />
+    <None Remove="Content\NPCs\Minibosses\Placeholder.txt" />
+    <None Remove="Content\NPCs\TownNPC\Placeholder.txt" />
+    <None Remove="Content\Projectiles\Placeholder.txt" />
+    <None Remove="Content\Tiles\Placeholder.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
 </Project>
