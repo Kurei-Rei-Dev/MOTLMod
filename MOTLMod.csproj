@@ -25,7 +25,6 @@
     <None Remove="Content\NPCs\Minibosses\Placeholder.txt" />
     <None Remove="Content\NPCs\TownNPC\Placeholder.txt" />
     <None Remove="Content\Projectiles\Placeholder.txt" />
-    <None Remove="Content\Tiles\Placeholder.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
