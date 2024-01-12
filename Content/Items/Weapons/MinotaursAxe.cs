@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace MOTLMod
+namespace MOTLMod.Content.Items.Weapons
 {
     public class MinotaursAxe : ModItem
     {
@@ -25,11 +25,14 @@ namespace MOTLMod
 
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
-            if (player.itemAnimation > 0 && player.itemTime <= 0) {
+            damage += Math.Abs(player.velocity.X);
+        }
+        public override void HoldItem(Player player)
+        {
+            if (player.itemAnimation > 0 && player.itemTime <= 0)
+            {
                 player.velocity.X = player.maxRunSpeed * 2 * player.direction;
             }
-
-            damage += Math.Abs(player.velocity.X); 
         }
     }
 }
