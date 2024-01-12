@@ -15,7 +15,6 @@
     <None Remove="Common\Globals\Placeholder.txt" />
     <None Remove="Common\Systems\Placeholder.txt" />
     <None Remove="Common\UI\Placeholder.txt" />
-    <None Remove="Common\Utils\Placeholder.txt" />
     <None Remove="Content\Classes\Placeholder.txt" />
     <None Remove="Content\Items\Consumables\Placeholder.txt" />
     <None Remove="Content\Items\Materials\Placeholder.txt" />
