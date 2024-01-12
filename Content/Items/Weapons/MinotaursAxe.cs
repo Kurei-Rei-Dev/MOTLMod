@@ -27,12 +27,14 @@ namespace MOTLMod.Content.Items.Weapons
         {
             damage += Math.Abs(player.velocity.X);
         }
-        public override void HoldItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (player.itemAnimation > 0 && player.itemTime <= 0)
             {
                 player.velocity.X = player.maxRunSpeed * 2 * player.direction;
             }
+
+            return true;
         }
     }
 }

@@ -1,7 +1,6 @@
 Mods: {
 	MOTLMod: {
 		Items: {
-<<<<<<< HEAD
 			RuinBrick: {
 				DisplayName: Ruin Brick
 				Tooltip: ""
@@ -15,7 +14,8 @@ Mods: {
 			RuinPlatform: {
 				DisplayName: Ruin Platform
 				Tooltip: ""
-=======
+			}
+
 			MinotaursAxe: {
 				DisplayName: Minotaurs Axe
 				Tooltip:
@@ -24,7 +24,6 @@ Mods: {
 					Dash speed scales off of maximum run speed.
 					Damage scales off of speed.
 					'''
->>>>>>> 7d6449033daa6014e0ad0285aa7ab94fd7fba032
 			}
 		}
 	}
