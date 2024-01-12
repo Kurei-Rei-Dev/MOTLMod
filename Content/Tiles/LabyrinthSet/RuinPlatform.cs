@@ -14,7 +14,6 @@ namespace MOTLMod.Content.Tiles.LabyrinthSet
             Main.tileFrameImportant[Type] = true;
             Main.tileSolidTop[Type] = true;
             Main.tileSolid[Type] = true;
-            TileID.Sets.Platforms[Type] = true;
             Main.tileNoAttach[Type] = true;
             Main.tileTable[Type] = true;
             Main.tileLavaDeath[Type] = true;
@@ -24,16 +23,20 @@ namespace MOTLMod.Content.Tiles.LabyrinthSet
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
             AddMapEntry(new Color(173, 148, 221));
 
+            RegisterItemDrop(ModContent.ItemType<Items.Placeables.Blocks.RuinItemSet.RuinPlatform>());
+            AdjTiles = new int[] { TileID.Platforms };
+
             TileObjectData.newTile.CoordinateHeights = new[] { 16 };
-            TileObjectData.addTile(Type);
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.StyleMultiplier = 27;
             TileObjectData.newTile.StyleWrapLimit = 27;
+            // TileObjectData.newTile.UsesCustomCanPlace = false;
+            TileObjectData.newTile.LavaDeath = true;
+            TileObjectData.addTile(Type);
 
-            RegisterItemDrop(ModContent.ItemType<Items.Placeables.Blocks.RuinItemSet.RuinPlatform>());
-            AdjTiles = new int[] { TileID.Platforms };
+            
         }
 
     }
