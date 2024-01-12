@@ -1,4 +1,6 @@
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Drawing.Drawing2D;
 using Terraria;
@@ -22,7 +24,7 @@ namespace MOTLMod.Content.Items.Weapons
             Item.crit = 6;
         }
 
-
+        float yPos = 0f;
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
         {
             damage += Math.Abs(player.velocity.X);
@@ -31,7 +33,17 @@ namespace MOTLMod.Content.Items.Weapons
         {
             if (player.itemAnimation > 0 && player.itemTime <= 0)
             {
-                player.velocity.X = player.maxRunSpeed * 2 * player.direction;
+                if (yPos == 0f)
+                {
+                    yPos = (Main.MouseWorld.Y - player.position.Y) / 10;
+                }
+                player.velocity.X = player.maxRunSpeed * 3 * player.direction;
+                player.velocity.Y = (player.velocity.Y + yPos) / 2;
+
+            }
+            else
+            {
+                yPos = 0f;
             }
 
             return true;
