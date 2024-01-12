@@ -1,1 +1,20 @@
+Mods: {
+	MOTLMod: {
+		Items: {
+			RuinBrick: {
+				DisplayName: Ruin Brick
+				Tooltip: ""
+			}
 
+			RuinPillar: {
+				DisplayName: Ruin Pillar
+				Tooltip: ""
+			}
+
+			RuinPlatform: {
+				DisplayName: Ruin Platform
+				Tooltip: ""
+			}
+		}
+	}
+}
