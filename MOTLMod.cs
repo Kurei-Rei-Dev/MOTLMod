@@ -18,7 +18,7 @@ namespace MOTLMod
             public bool this[int tile1, int tile2]
             {
                 get => Main.tileMerge[tile1][tile2] || Main.tileMerge[tile2][tile1];
-                set => MOTLUtilsFix.Merge(tile1, tile2);
+                set => MOTLUtils.Merge(tile1, tile2);
             }
         }
         #endregion
