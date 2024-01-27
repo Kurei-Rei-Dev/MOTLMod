@@ -25,6 +25,23 @@ Mods: {
 					Damage scales off of speed.
 					'''
 			}
+
+			RuinChest: {
+				DisplayName: Ruin Chest
+				Tooltip: ""
+			}
+
+			RuinTorch: {
+				DisplayName: Ruin Torch
+				Tooltip: ""
+			}
+		}
+
+		Tiles: {
+			RuinChest: {
+				MapEntry0: Mods.MOTLMod.Tiles.RuinChest.MapEntry0
+				MapEntry1: Mods.MOTLMod.Tiles.RuinChest.MapEntry1
+			}
 		}
 	}
 }

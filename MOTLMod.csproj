@@ -16,6 +16,7 @@
     <None Remove="Common\Systems\Placeholder.txt" />
     <None Remove="Common\UI\Placeholder.txt" />
     <None Remove="Content\Classes\Placeholder.txt" />
+    <None Remove="Content\Dusts\SpecificDusts\RuinTorchDust.png" />
     <None Remove="Content\Items\Consumables\Placeholder.txt" />
     <None Remove="Content\Items\Materials\Placeholder.txt" />
     <None Remove="Content\Items\Placeables\Blocks\RuinItemSet\RuinBrick.png" />
@@ -28,8 +29,12 @@
     <None Remove="Content\NPCs\TownNPC\Placeholder.txt" />
     <None Remove="Content\Projectiles\Placeholder.txt" />
     <None Remove="Content\Tiles\LabyrinthSet\RuinBrick.png" />
+    <None Remove="Content\Tiles\LabyrinthSet\RuinChest.png" />
+    <None Remove="Content\Tiles\LabyrinthSet\RuinChest_Highlight.png" />
     <None Remove="Content\Tiles\LabyrinthSet\RuinPillar.png" />
     <None Remove="Content\Tiles\LabyrinthSet\RuinPlatform.png" />
+    <None Remove="Content\Tiles\LabyrinthSet\RuinTorch.png" />
+    <None Remove="Content\Tiles\LabyrinthSet\RuinTorch_Flame.png" />
     <None Remove="icon_workshop.png" />
   </ItemGroup>
   <ItemGroup>
