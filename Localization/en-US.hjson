@@ -43,5 +43,7 @@ Mods: {
 				MapEntry1: Mods.MOTLMod.Tiles.RuinChest.MapEntry1
 			}
 		}
+
+		NPCs.Shadowtaur.DisplayName: Shadowtaur
 	}
 }

@@ -24,6 +24,7 @@
     <None Remove="Content\Items\Placeables\Blocks\RuinItemSet\RuinPlatform.png" />
     <None Remove="Content\Items\Weapons\Placeholder.txt" />
     <None Remove="Content\NPCs\Bosses\Placeholder.txt" />
+    <None Remove="Content\NPCs\Bosses\PreHM\Minotaur\Shadowtaur.png" />
     <None Remove="Content\NPCs\Critters\Placeholder.txt" />
     <None Remove="Content\NPCs\Minibosses\Placeholder.txt" />
     <None Remove="Content\NPCs\TownNPC\Placeholder.txt" />
