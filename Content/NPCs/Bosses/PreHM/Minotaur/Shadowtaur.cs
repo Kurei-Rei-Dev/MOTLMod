@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Operations;
+using Microsoft.Xna.Framework;
 using MOTLMod.Common.Systems;
 using System;
 using System.Collections.Generic;
@@ -139,6 +141,7 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
         }
 
         #region FrameDefStuff
+
         public override void FindFrame(int frameHeight)
         {
             if (Idle == true)
@@ -180,7 +183,7 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
             else if (RunWindUp == true)
             {
                 int startFrame = 13;
-                int finalFrame = 13;
+                int finalFrame = 14;
 
                 int frameSpeed = 1;
                 NPC.frameCounter += 0.4f;
@@ -324,16 +327,16 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
         }
         #endregion
 
-        public bool Idle = true;
-        public bool Walking = false;
-        public bool RunWindUp = false;
-        public bool Run = false;
-        public bool Swing = false;
-        public bool Throw = false;
-        public bool Catch = false;
-        public bool SlamWindUp = false;
-        public bool Whirlwind = false;
-        public bool Roar = false;
+        public bool Idle = true; // 0
+        public bool Walking = false; // 1
+        public bool RunWindUp = false; //2
+        public bool Run = false; //22
+        public bool Swing = false; //3
+        public bool Throw = false; //4
+        public bool Catch = false; //44
+        public bool SlamWindUp = false; //5
+        public bool Whirlwind = false; //6
+        public bool Roar = false; //7
 
         public int AttackTime = 0;
         public int AttackType = 0;
@@ -357,12 +360,21 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
             }
             #endregion
 
-            if (AttackType == 0)
+            if (AttackType == 0) //idle
             {
-                if (AttackTime < 60)
+                if (AttackTime < 55)
                 {
                     Walking = false;
                     Idle = true;
+                    RunWindUp = false;
+                    Run = false; 
+                    Swing = false; 
+                    Throw = false; 
+                    Catch = false;
+                    SlamWindUp = false;
+                    Whirlwind = false;
+                    Roar = false; 
+
                     NPC.aiStyle = 3;
                     AttackTime += 1;
                 }
@@ -372,14 +384,174 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
                     AttackTime = 0;
                 }
             }
-            else if (AttackType == 1)
+            else if (AttackType == 1) // walk
             {
-                if (AttackTime < 180)
+                if (AttackTime < 120)
                 {
                     Idle = false;
                     Walking = true;
+                    RunWindUp = false;
+                    Run = false;
+                    Swing = false;
+                    Throw = false;
+                    Catch = false;
+                    SlamWindUp = false;
+                    Whirlwind = false;
+                    Roar = false;
+
                     NPC.velocity.X = directionToPlayer.X * 3f;
-                    NPC.velocity.Y = 10f;
+                    NPC.velocity.Y = 7f;
+                    AttackTime += 1;
+                }
+                else
+                {
+                    //AttackType = Main.rand.Next(2, 8);
+                    //AttackTime = 0;
+                    ChooseRandomAttack();
+                }
+            }
+            else if (AttackType == 2)// getting ready to run
+            {
+                if (AttackTime < 30)
+                {
+                    Idle = false;
+                    Walking = false;
+                    RunWindUp = true;
+                    NPC.aiStyle = 3;
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 22;
+                    AttackTime = 0;
+                }
+            }
+            else if (AttackType == 22) //run
+            {
+                if (AttackTime < 200)
+                {
+                    Idle = false;
+                    Walking = false;
+                    RunWindUp = false;
+                    Run = true;
+                    NPC.velocity.X = directionToPlayer.X * 6f;
+                    NPC.velocity.Y = 7f;
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 0;
+                    AttackTime = 0;
+                    NPC.velocity.X = 0;
+                    NPC.velocity.Y = 0;
+                }
+            }
+            else if (AttackType == 3) //swing
+            {
+                if (AttackTime < 20)
+                {
+                    Idle = false;
+                    Walking = false;
+                    Swing = true;
+                    NPC.aiStyle = 3;
+                    NPC.velocity.X = 0;
+                    NPC.velocity.Y = 0;
+                    //proj stuff here
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 0;
+                    AttackTime = 0;
+
+                }
+            }
+            else if (AttackType == 4)// throw
+            {
+                if (AttackTime < 30)
+                {
+                    Idle = false;
+                    Walking = false;
+                    Throw = true;
+                    NPC.aiStyle = 3;
+                    NPC.velocity.X = 0;
+                    NPC.velocity.Y = 0;
+                    //projectile stuff here
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 44; //catch
+                    AttackTime = 0;
+                }
+            }
+            else if (AttackType == 44) //catch
+            {
+                if (AttackTime < 100)
+                {
+                    Throw = false;
+                    Catch = true;
+                    NPC.aiStyle = 3;
+                    NPC.velocity.X = 0;
+                    NPC.velocity.Y = 0;
+                    //projectile stuff i guess lmao
+                    //music
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 0;
+                    AttackTime = 0;
+                }
+            }
+            else if (AttackType == 5)// Slam  Wind Up 
+            {
+                if (AttackTime < 30)
+                {
+                    Idle = false;
+                    Walking = false;
+                    SlamWindUp = true;
+                    NPC.aiStyle = 3;
+                    NPC.velocity.X = 0;
+                    NPC.velocity.Y = 0;
+                    //Proj stuff 😭
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 3;
+                    AttackTime = 0;
+                }
+            }
+            else if (AttackType == 6)// whirlwind
+            {
+                if (AttackTime < 140)
+                {
+                    Idle = false;
+                    Walking = false;
+                    Whirlwind = true;
+                    NPC.velocity.X = directionToPlayer.X * 5f;
+                    NPC.velocity.Y = 7f;
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 0;
+                    AttackTime = 0;
+                    NPC.AddBuff(BuffID.Dazed, 180);
+                }
+            }
+            else if (AttackType == 7)//Roar goddamn okay lol
+            {
+                if (AttackTime < 120)
+                {
+                    Idle = false;
+                    Walking = false;
+                    Roar = true;
+                    NPC.aiStyle = 3;
+                    NPC.velocity.X = 0;
+                    NPC.velocity.Y = 0;
+
                     AttackTime += 1;
                 }
                 else
@@ -389,7 +561,11 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
                 }
             }
 
-            
+            void ChooseRandomAttack()
+            {
+                AttackType = Main.rand.Next(2, 8); // Choose a random attack type
+                AttackTime = 0; // Reset attack timer
+            }
 
             return false;
         }
