@@ -3,8 +3,10 @@ using MOTLMod.Common.Systems;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Security.Cryptography.X509Certificates;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics.CameraModifiers;
@@ -64,11 +66,12 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
         }
         public override void SetDefaults()
         {
-            NPC.width = 96;
+            NPC.width = 94;
             NPC.height = 142;
             NPC.damage = 20;
             NPC.defense = 17;
             NPC.knockBackResist = 0f;
+            NPC.noGravity = false;
             NPC.lifeMax = 4286;
             NPC.boss = true;
             NPC.HitSound = SoundID.NPCHit1;
@@ -141,7 +144,7 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
             if (Idle == true)
             {
                 int startFrame = 0;
-                int finalFrame = 6;
+                int finalFrame = 5;
 
                 int frameSpeed = 1;
                 NPC.frameCounter += 0.4f;
@@ -332,22 +335,63 @@ namespace MOTLMod.Content.NPCs.Bosses.PreHM.Minotaur
         public bool Whirlwind = false;
         public bool Roar = false;
 
+        public int AttackTime = 0;
+        public int AttackType = 0;
+
         public override bool PreAI()
         {
-            NPC.width = 94;
-            NPC.height = 142;
+            
             NPC.TargetClosest();
+            NPC.velocity *= 0;
+            Vector2 directionToPlayer = Main.player[NPC.target].Center - NPC.Center;
+            directionToPlayer.Normalize();
 
-            if (Idle == true)
+            #region dir stuff
+            if (directionToPlayer.X > 0)
             {
-                AIType = NPCID.GrayGrunt;
-                return true;
+                NPC.spriteDirection = 1; // Face right
             }
-            else
+            else if (directionToPlayer.X < 0)
             {
-                return false;
+                NPC.spriteDirection = -1; // Face left
+            }
+            #endregion
+
+            if (AttackType == 0)
+            {
+                if (AttackTime < 60)
+                {
+                    Walking = false;
+                    Idle = true;
+                    NPC.aiStyle = 3;
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 1;
+                    AttackTime = 0;
+                }
+            }
+            else if (AttackType == 1)
+            {
+                if (AttackTime < 180)
+                {
+                    Idle = false;
+                    Walking = true;
+                    NPC.velocity.X = directionToPlayer.X * 3f;
+                    NPC.velocity.Y = 10f;
+                    AttackTime += 1;
+                }
+                else
+                {
+                    AttackType = 0;
+                    AttackTime = 0;
+                }
             }
 
+            
+
+            return false;
         }
     }
 }
